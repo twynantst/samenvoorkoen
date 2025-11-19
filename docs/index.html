@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Koen</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<header>
+    <h1>Help Koen</h1>
+    <p>Steun de behandeling van Koen – elke bijdrage telt.</p>
+    <div id="donate-button"></div>
+</header>
+
+<main>
+    <section id="doel">
+        <h2>Het Doel</h2>
+        <p>Koen heeft een gespecialiseerde behandeling nodig die niet volledig gedekt wordt. Ons doel is om de financiële druk te verlichten zodat hij zich kan focussen op herstel.</p>
+        <p>We communiceren transparant over ingezamelde acties en donaties.</p>
+    </section>
+
+    <section id="onze-acties">
+        <h2>Onze Acties</h2>
+        <p class="intro-text">We organiseren verschillende acties om Koen te steunen. Klik op een actie voor meer details.</p>
+        
+        <div class="eigen-acties-grid">
+            <div class="eigen-actie-card" onclick="toggleDetails(this)">
+                <div class="actie-header">
+                    <h3>🎉 Benefietfuif</h3>
+                    <span class="datum-badge">Za 12 april 2025</span>
+                </div>
+                <p class="locatie">📍 Sporthal De Kouter</p>
+                <div class="actie-details" style="display:none;">
+                    <p><strong>Tijd:</strong> 20:00 - 02:00</p>
+                    <p><strong>Toegang:</strong> €10 per persoon (incl. eerste drankje)</p>
+                    <p><strong>Programma:</strong> DJ Marc draait de beste hits, loterij met waardevolle prijzen</p>
+                    <p><strong>Info & tickets:</strong> <a href="mailto:fuif@helpkoen.be">fuif@helpkoen.be</a> of 0456 78 90 12</p>
+                </div>
+                <span class="meer-info">▼ Klik voor meer info</span>
+            </div>
+
+            <div class="eigen-actie-card" onclick="toggleDetails(this)">
+                <div class="actie-header">
+                    <h3>🧀 Kaas- & Wijnavond</h3>
+                    <span class="datum-badge">Vr 18 april 2025</span>
+                </div>
+                <p class="locatie">📍 Parochiezaal Sint-Pieter</p>
+                <div class="actie-details" style="display:none;">
+                    <p><strong>Tijd:</strong> 19:00 - 23:00</p>
+                    <p><strong>Prijs:</strong> €25 per persoon (all-in degustatie)</p>
+                    <p><strong>Programma:</strong> Selectie van 8 kazen met bijpassende wijnen, uitleg door sommelier</p>
+                    <p><strong>Reserveren verplicht:</strong> <a href="mailto:kaas@helpkoen.be">kaas@helpkoen.be</a> - Beperkt aantal plaatsen!</p>
+                </div>
+                <span class="meer-info">▼ Klik voor meer info</span>
+            </div>
+
+            <div class="eigen-actie-card" onclick="toggleDetails(this)">
+                <div class="actie-header">
+                    <h3>🍝 Spaghetti Dag</h3>
+                    <span class="datum-badge">Zo 27 april 2025</span>
+                </div>
+                <p class="locatie">📍 Gemeenteplein (overdekt bij regen)</p>
+                <div class="actie-details" style="display:none;">
+                    <p><strong>Tijd:</strong> 11:30 - 18:00 (doorlopend)</p>
+                    <p><strong>Prijs:</strong> €12 volwassenen, €7 kinderen (-12j)</p>
+                    <p><strong>Menu:</strong> Spaghetti bolognese (vega optie beschikbaar), salade, dessert, koffie</p>
+                    <p><strong>Extra:</strong> Springkasteel voor de kinderen, live muziek vanaf 14u</p>
+                    <p><strong>Afhaal mogelijk:</strong> Bestel op 0498 12 34 56</p>
+                </div>
+                <span class="meer-info">▼ Klik voor meer info</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="overzicht">
+        <h2>Overzicht &amp; Kalender</h2>
+        <div id="acties-container">
+            <p>Nog geen geregistreerde externe acties.</p>
+        </div>
+    </section>
+    
+    <section id="transparantie">
+        <h2>Transparantie</h2>
+        <p>Totaal ingezameld (externe donatie via GoFundMe): <span id="totaal-bedrag">—</span></p>
+        <p>Bezoek onze donatiepagina voor actuele stand.</p>
+    </section>
+
+    <section id="registreer">
+        <h2>Registreer Jouw Actie</h2>
+        <p>Organiseer je een wafelenbak, quiz, wandeling of iets anders? Vul het formulier in hieronder.</p>
+        <div class="form-embed">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVOt9dH2I4CIlIb3oQPn3Gvpmtv_X5kJzBUL6b5khhyFHUTA/viewform?embedded=true" width="640" height="1106" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
+        </div>
+        <p class="hint">Vul in de iframe <code>src</code> je eigen Google Form embed URL in. Zie README voor instructies.</p>
+    </section>
+    
+</main>
+
+<footer>
+    <p>&copy; 2025 Help Koen</p>
+</footer>
+
+<script src="scripts/donate.js"></script>
+<script src="scripts/actions-remote.js"></script>
+<script>
+    // Componenten laden
+    fetch('components/donate-button.html')
+        .then(r => r.text())
+        .then(html => document.getElementById('donate-button').innerHTML = html);
+    
+    // Toggle details voor eigen acties
+    function toggleDetails(card) {
+        const details = card.querySelector('.actie-details');
+        const meerInfo = card.querySelector('.meer-info');
+        const isOpen = details.style.display !== 'none';
+        
+        if (isOpen) {
+            details.style.display = 'none';
+            meerInfo.textContent = '▼ Klik voor meer info';
+            card.classList.remove('expanded');
+        } else {
+            details.style.display = 'block';
+            meerInfo.textContent = '▲ Verberg details';
+            card.classList.add('expanded');
+        }
+    }
+</script>
+</body>
+</html>
