@@ -3,8 +3,8 @@
     
     // VERVANG DEZE URL door jouw gepubliceerde Google Sheet CSV export URL
     // Voorbeeld: https://docs.google.com/spreadsheets/d/e/JOUW_SHEET_ID/pub?output=csv
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/1FAIpQLScVOt9dH2I4CIlIb3oQPn3Gvpmtv_X5kJzBUL6b5khhyFHUTA/pub?output=csv';
-    
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRpS6o94LVFOmq7ttlODzHUUei2z1oz99qKEiD98N6ujndtMKfotH2vUyx5_00fMoyipBBjxdiwt6rN/pub?output=csv';
+
     // Voorbeeld testdata (wordt gebruikt tot Google Sheet geconfigureerd is)
     const DEMO_ACTIES = [
         {
