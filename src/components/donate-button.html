@@ -1,3 +1,58 @@
-<a class="donate-btn" href="https://www.gofundme.com/f/JE-GOFUNDME-SLUG" target="_blank" rel="noopener">
+<button class="donate-btn" onclick="openDonateDialog()">
     Doneer Nu
-</a>
+</button>
+
+<!-- Donate Dialog -->
+<div id="donate-dialog" class="dialog-overlay" onclick="closeDonateDialog()">
+    <div class="dialog-content" onclick="event.stopPropagation()">
+        <button class="dialog-close" onclick="closeDonateDialog()">&times;</button>
+        <h3>Kies een donatiemethode</h3>
+        
+        <div class="donate-options">
+            <a href="https://www.gofundme.com/f/JE-GOFUNDME-SLUG" target="_blank" rel="noopener" class="donate-option">
+                <div class="option-icon">🌐</div>
+                <div class="option-content">
+                    <h4>GoFundMe</h4>
+                    <p>Doneer online via GoFundMe</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+            
+            <button class="donate-option" onclick="showQRCode()">
+                <div class="option-icon">📱</div>
+                <div class="option-content">
+                    <h4>QR-code</h4>
+                    <p>Scan om te doneren</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </button>
+        </div>
+        
+        <!-- QR Code Section (hidden by default) -->
+        <div id="qr-section" class="qr-section" style="display: none;">
+            <button class="back-btn" onclick="hideQRCode()">← Terug</button>
+            <h4>Scan de QR-code</h4>
+            <div class="qr-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+                    <rect width="200" height="200" fill="#fff"/>
+                    <rect x="20" y="20" width="60" height="60" fill="#000"/>
+                    <rect x="120" y="20" width="60" height="60" fill="#000"/>
+                    <rect x="20" y="120" width="60" height="60" fill="#000"/>
+                    <rect x="30" y="30" width="40" height="40" fill="#fff"/>
+                    <rect x="130" y="30" width="40" height="40" fill="#fff"/>
+                    <rect x="30" y="130" width="40" height="40" fill="#fff"/>
+                    <rect x="40" y="40" width="20" height="20" fill="#000"/>
+                    <rect x="140" y="40" width="20" height="20" fill="#000"/>
+                    <rect x="40" y="140" width="20" height="20" fill="#000"/>
+                    <rect x="90" y="30" width="10" height="10" fill="#000"/>
+                    <rect x="100" y="40" width="10" height="10" fill="#000"/>
+                    <rect x="90" y="50" width="10" height="10" fill="#000"/>
+                    <rect x="120" y="90" width="30" height="30" fill="#000"/>
+                    <rect x="90" y="120" width="20" height="20" fill="#000"/>
+                    <rect x="130" y="130" width="10" height="10" fill="#fff"/>
+                </svg>
+            </div>
+            <p class="qr-info">BE12 3456 7890 1234<br><small>SAMEN voor Koen TEGEN kanker</small></p>
+        </div>
+    </div>
+</div>
