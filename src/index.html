@@ -88,11 +88,19 @@
 
     <section id="registreer">
         <h2>Registreer Jouw Actie</h2>
-        <p>Organiseer je een wafelenbak, quiz, wandeling of iets anders? Vul het formulier in hieronder.</p>
-        <div class="form-embed">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVOt9dH2I4CIlIb3oQPn3Gvpmtv_X5kJzBUL6b5khhyFHUTA/viewform?embedded=true" width="640" height="1106" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
+        <p>Organiseer je een wafelenbak, quiz, wandeling of iets anders? Klik hieronder om het formulier te openen.</p>
+        
+        <div class="form-toggle-card" onclick="toggleForm()">
+            <div class="form-toggle-header">
+                <h3>📝 Registratieformulier</h3>
+                <span class="form-status" id="form-status">▼ Klik om formulier te openen</span>
+            </div>
+            <p class="form-intro">Vul je actie-details in: naam, datum, locatie, beschrijving en contactgegevens</p>
         </div>
-        <p class="hint">Vul in de iframe <code>src</code> je eigen Google Form embed URL in. Zie README voor instructies.</p>
+        
+        <div class="form-embed" id="form-container" style="display:none;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVOt9dH2I4CIlIb3oQPn3Gvpmtv_X5kJzBUL6b5khhyFHUTA/viewform?embedded=true" width="100%" height="1106" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
+        </div>
     </section>
     
 </main>
@@ -123,6 +131,23 @@
             details.style.display = 'block';
             meerInfo.textContent = '▲ Verberg details';
             card.classList.add('expanded');
+        }
+    }
+    
+    // Toggle formulier
+    function toggleForm() {
+        const formContainer = document.getElementById('form-container');
+        const formStatus = document.getElementById('form-status');
+        const isOpen = formContainer.style.display !== 'none';
+        
+        if (isOpen) {
+            formContainer.style.display = 'none';
+            formStatus.textContent = '▼ Klik om formulier te openen';
+        } else {
+            formContainer.style.display = 'block';
+            formStatus.textContent = '▲ Verberg formulier';
+            // Scroll naar formulier
+            setTimeout(() => formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
         }
     }
 </script>
