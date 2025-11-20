@@ -82,6 +82,89 @@ h2 {
     font-weight: 700;
 }
 
+/* Hero sectie voor Koens verhaal */
+.hero-section {
+    background: linear-gradient(135deg, #fff5e6 0%, #fff 100%);
+    border-left: 5px solid #e67e22;
+}
+
+.verhaal-content p {
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+.kosten-info {
+    background: #fff9f0;
+    border-left: 4px solid #e67e22;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+}
+
+.kosten-info p {
+    margin: 0.5rem 0;
+}
+
+.kosten-info strong {
+    color: #d35400;
+    font-size: 1.1rem;
+}
+
+.doel-statement {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e67e22;
+    color: #2c3e50;
+    font-size: 1.15rem;
+}
+
+.hoofddoel {
+    font-size: 1.25rem;
+    color: #d35400;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.koen-beschrijving {
+    font-style: italic;
+    background: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.call-to-action {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+    margin: 1.5rem 0;
+}
+
+.samen-tekst {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #e67e22;
+    margin: 2rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dank {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e0e0e0;
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.dank em {
+    color: #e67e22;
+    font-weight: 600;
+}
+
 /* Eigen acties grid */
 .intro-text {
     color: #555;
