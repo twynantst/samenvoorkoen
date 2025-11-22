@@ -985,13 +985,13 @@ footer {
     font-size: 0.95rem;
 }
 
-.footer-section a {
+.footer-section a:not(.footer-instagram) {
     color: #e67e22;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.footer-section a:hover {
+.footer-section a:not(.footer-instagram):hover {
     color: #d35400;
     text-decoration: underline;
 }
@@ -1000,27 +1000,34 @@ footer {
     margin-top: 0.5rem;
 }
 
+.footer-social .footer-instagram,
 .footer-instagram {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    gap: 0.5rem;
     background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
 }
 
+.footer-social .footer-instagram:hover,
 .footer-instagram:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(188, 24, 136, 0.4);
+    box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .footer-instagram svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+    fill: #fff;
 }
 
 .footer-bottom {
