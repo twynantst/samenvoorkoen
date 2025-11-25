@@ -181,7 +181,7 @@
             <p>
                 <strong>SAMEN voor Koen TEGEN kanker</strong><br>
                 Feitelijke Vereniging<br>
-                Schoolstraat 16, Eindhout<br>
+                Houthoek 33, Laakdal<br>
                 <a href="mailto:info@samenvoorkoen.be">info@samenvoorkoen.be</a>
             </p>
         </div>
@@ -368,10 +368,15 @@
         'samen-voor-koen (4).jpg', 'samen-voor-koen (5).jpg', 'samen-voor-koen (6).jpg',
         'samen-voor-koen (7).jpg', 'samen-voor-koen (8).jpg', 'samen-voor-koen (9).jpg',
         'samen-voor-koen (10).jpg', 'samen-voor-koen (11).jpg', 'samen-voor-koen (12).jpg',
-        'samen-voor-koen (13).jpg', 'samen-voor-koen (14).jpg', 'samen-voor-koen (15).jpg',
-        'samen-voor-koen (16).jpg', 'samen-voor-koen (17).jpg', 'samen-voor-koen (18).jpg',
-        'samen-voor-koen (19).jpg', 'samen-voor-koen (20).jpg', 'samen-voor-koen (21).jpg',
-        'samen-voor-koen (22).jpg', 'samen-voor-koen (23).jpg', 'samen-voor-koen (24).jpg'
+        'samen-voor-koen (13).jpg', 'samen-voor-koen (14).jpg', 'samen-voor-koen (17).jpg',
+        'samen-voor-koen (18).jpg', 'samen-voor-koen (19).jpg', 'samen-voor-koen (20).jpg',
+        'samen-voor-koen (21).jpg', 'samen-voor-koen (22).jpg', 'samen-voor-koen (23).jpg',
+        'samen-voor-koen (24).jpg'
+    ];
+    
+    const bigPhotos = [
+        'big-samen-voor-koen (15).jpg',
+        'big-samen-voor-koen (16).jpg'
     ];
     
     function shuffleArray(array) {
@@ -401,13 +406,17 @@
         const gallery = document.getElementById('gallerij-grid');
         if (!gallery) return;
         
+        const allGalleryPhotos = [...allPhotos, ...bigPhotos];
         const shuffled = shuffleArray(allPhotos);
+        const fixed = [bigPhotos[0], ...shuffled.slice(0, 6), bigPhotos[1], ...shuffled.slice(6), ...bigPhotos.slice(2)];
         
-        gallery.innerHTML = shuffled.map(photo => 
-            `<div class="foto-item">
+        gallery.innerHTML = fixed.map(photo => {
+            const isBig = photo.startsWith('big-');
+            const className = isBig ? 'foto-item foto-item-big' : 'foto-item';
+            return `<div class="${className}">
                 <img src="assets/${photo}" alt="Koen" loading="lazy">
-            </div>`
-        ).join('');
+            </div>`;
+        }).join('');
     }
     
     // Initialize photos when donate button is loaded
