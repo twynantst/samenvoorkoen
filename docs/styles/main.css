@@ -534,13 +534,18 @@ h2 {
     gap: 0.5rem;
     max-height: 400px;
     overflow-y: scroll;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 1rem;
     background: #f9f9f9;
     border-radius: 8px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    /* iOS Safari scroll fix */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 /* Desktop scrollbar */
@@ -586,16 +591,25 @@ h2 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     background: #f5f5f5;
-    aspect-ratio: 1;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    /* Fixed height voor iPhone compatibiliteit */
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
 }
 
 .foto-item-big {
     grid-column: span 2;
     grid-row: span 2;
+    padding-bottom: 100%;
 }
 
 .foto-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: block;
@@ -610,6 +624,16 @@ h2 {
 
 .foto-item:hover img {
     transform: scale(1.05);
+}
+
+/* Extra kleine schermen (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .gallerij-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        max-height: 350px;
+        gap: 0.4rem;
+        padding: 0.75rem;
+    }
 }
 
 /* Tablet en groter: meer kolommen */
@@ -833,9 +857,6 @@ form button:hover {
     border-color: #e67e22;
     box-shadow: 0 4px 12px rgba(230, 126, 34, 0.2);
     transform: translateX(4px);
-}
-.actie-item.eigen-actie-item {
-    /* Geen extra styling, alleen badge maakt het onderscheid */
 }
 
 .actie-badge {
