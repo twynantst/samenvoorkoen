@@ -955,6 +955,8 @@ form button:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.75rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .form-toggle-card h3 {
@@ -962,6 +964,8 @@ form button:hover {
     color: #2c3e50;
     font-size: 1.3rem;
     font-weight: 700;
+    flex: 1 1 auto;
+    min-width: 200px;
 }
 
 .form-status {
@@ -969,6 +973,21 @@ form button:hover {
     font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 599px) {
+    .form-toggle-card {
+        padding: 1rem;
+    }
+    
+    .form-toggle-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .form-status {
+        font-size: 0.8rem;
+    }
 }
 
 .form-intro {
