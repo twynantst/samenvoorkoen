@@ -35,10 +35,34 @@
     
     function loadActies() {
         console.log('loadActies() gestart, container:', container);
+        
+        // Converteer EIGEN_ACTIES naar formaat dat renderActies verwacht
+        const eigenActiesVoorLijst = (window.EIGEN_ACTIES || []).map(actie => {
+            // Maak een mooie beschrijving van de details
+            const detailsText = actie.details
+                .map(d => {
+                    // Strip HTML tags voor tekstweergave
+                    const cleanValue = d.value.replace(/<[^>]*>/g, '');
+                    return `${d.label}: ${cleanValue}`;
+                })
+                .join(' | ');
+            
+            return {
+                titel: `${actie.emoji} ${actie.titel}`,
+                datum: actie.datum,
+                datumFormatted: actie.datumFormatted,
+                locatie: actie.locatie,
+                organisator: 'Team SAMEN voor Koen TEGEN kanker',
+                email: 'info@samenvoorkoen.be',
+                beschrijving: detailsText,
+                type: 'eigen'
+            };
+        });
+        
         // Check of Sheet URL al ingevuld is
         if (SHEET_CSV_URL.includes('JOUW_SHEET_ID')) {
-            console.info('Google Sheet nog niet geconfigureerd, combineer eigen + demo data');
-            const alleActies = [...EIGEN_ACTIES, ...DEMO_ACTIES];
+            console.info('Google Sheet nog niet geconfigureerd, toon eigen + demo data');
+            const alleActies = [...eigenActiesVoorLijst, ...DEMO_ACTIES];
             renderActies(alleActies);
             window.alleExterneActies = DEMO_ACTIES; // Voor kalender
             return;
@@ -53,7 +77,7 @@
             })
             .then(csv => {
                 const externeActies = parseCSV(csv);
-                const alleActies = [...EIGEN_ACTIES, ...(externeActies.length > 0 ? externeActies : DEMO_ACTIES)];
+                const alleActies = [...eigenActiesVoorLijst, ...(externeActies.length > 0 ? externeActies : DEMO_ACTIES)];
                 renderActies(alleActies);
                 window.alleExterneActies = externeActies.length > 0 ? externeActies : DEMO_ACTIES;
                 if (typeof renderCalendar === 'function') renderCalendar();
@@ -143,12 +167,12 @@
         
         container.innerHTML = toekomstActies.map(a => `
             <div class="actie-item ${a.type === 'eigen' ? 'eigen-actie-item' : ''}">
-                ${a.type === 'eigen' ? '<span class="actie-badge">Onze Actie</span>' : ''}
-                <h3>${escapeHtml(a.titel)} <small>(${formatDate(a.datum)})</small></h3>
-                <p><strong>Locatie:</strong> ${escapeHtml(a.locatie)}</p>
-                <p><strong>Organisator:</strong> ${escapeHtml(a.organisator)}</p>
-                <p>${escapeHtml(a.beschrijving)}</p>
-                <p class="contact">Contact: <a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></p>
+                ${a.type === 'eigen' ? '<span class="actie-badge">⭐ Onze Actie</span>' : ''}
+                <h3>${escapeHtml(a.titel)} <small>(${a.datumFormatted || formatDate(a.datum)})</small></h3>
+                <p><strong>📍 Locatie:</strong> ${escapeHtml(a.locatie)}</p>
+                <p><strong>👥 Organisator:</strong> ${escapeHtml(a.organisator)}</p>
+                <p><strong>📝 Details:</strong> ${escapeHtml(a.beschrijving)}</p>
+                <p class="contact">✉️ Contact: <a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></p>
             </div>
         `).join('');
     }
@@ -171,7 +195,7 @@
         }
     }
     
-    // Wacht tot DOM geladen is voordat we acties laden
+    // Wacht tot DOM geladen is en EIGEN_ACTIES beschikbaar is
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
@@ -180,8 +204,14 @@
     
     function init() {
         console.log('Actions script geïnitialiseerd');
-        loadActies();
-        // Auto-refresh elke 5 minuten (optioneel)
-        setInterval(loadActies, 5 * 60 * 1000);
+        // Wacht tot EIGEN_ACTIES beschikbaar is (gedefinieerd in index.html)
+        const checkEigenActies = setInterval(() => {
+            if (window.EIGEN_ACTIES) {
+                clearInterval(checkEigenActies);
+                loadActies();
+                // Auto-refresh elke 5 minuten (optioneel)
+                setInterval(loadActies, 5 * 60 * 1000);
+            }
+        }, 50);
     }
 })();

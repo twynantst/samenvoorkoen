@@ -827,6 +827,7 @@ form button:hover {
     border-radius: 10px;
     background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
     transition: all 0.3s ease;
+    position: relative;
 }
 .actie-item:hover {
     border-color: #e67e22;
@@ -834,20 +835,21 @@ form button:hover {
     transform: translateX(4px);
 }
 .actie-item.eigen-actie-item {
-    border-left: 4px solid #e67e22;
+    /* Geen extra styling, alleen badge maakt het onderscheid */
 }
 
 .actie-badge {
     display: inline-block;
-    background: #e67e22;
+    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
     color: #fff;
-    padding: 0.25rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
 }
 
 .actie-item h3 {

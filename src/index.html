@@ -180,8 +180,8 @@
 <script src="scripts/donate.js"></script>
 <script src="scripts/actions-remote.js"></script>
 <script>
-    // Centrale definitie van eigen acties
-    const EIGEN_ACTIES = [
+    // Centrale definitie van eigen acties (globaal beschikbaar voor actions-remote.js)
+    window.EIGEN_ACTIES = [
         {
             datum: '2026-01-24',
             datumFormatted: 'Vr 24 januari 2026',
@@ -234,7 +234,7 @@
         const grid = document.getElementById('eigen-acties-grid');
         if (!grid) return;
         
-        grid.innerHTML = EIGEN_ACTIES.map(actie => `
+        grid.innerHTML = window.EIGEN_ACTIES.map(actie => `
             <div class="eigen-actie-card" onclick="toggleDetails(this)" data-datum="${actie.datum}">
                 <div class="actie-header">
                     <h3>${actie.emoji} ${actie.titel}</h3>
@@ -317,7 +317,7 @@
         // Dagen van de maand
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const eigenActie = EIGEN_ACTIES.some(a => a.datum === dateStr);
+            const eigenActie = window.EIGEN_ACTIES.some(a => a.datum === dateStr);
             const externeActie = externeActies.some(a => a.datum === dateStr);
             
             let classes = 'calendar-day';
