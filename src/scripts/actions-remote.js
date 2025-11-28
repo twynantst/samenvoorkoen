@@ -5,30 +5,30 @@
 
     // Voorbeeld testdata (wordt gebruikt tot Google Sheet geconfigureerd is)
     const DEMO_ACTIES = [
-        {
-            titel: 'Wafelenbak bij de kerk',
-            datum: '2026-01-05',
-            locatie: 'Kerkplein',
-            organisator: 'Buren van de Kerkstraat',
-            email: 'contact@voorbeeld.be',
-            beschrijving: 'Verse wafels met koffie en thee. Alle opbrengst gaat naar Koen.'
-        },
-        {
-            titel: 'Benefiet Quiz Avond',
-            datum: '2026-02-19',
-            locatie: 'Café De Vriendschap',
-            organisator: 'Quizclub De Slimmeriken',
-            email: 'quiz@voorbeeld.be',
-            beschrijving: 'Gezellige quiz met hapjes en drankjes. Inschrijven per ploeg van 4 personen.'
-        },
-        {
-            titel: 'Sponsorloop',
-            datum: '2026-05-03',
-            locatie: 'Sportcomplex',
-            organisator: 'Atletiekclub Vooruit',
-            email: 'atletiek@voorbeeld.be',
-            beschrijving: 'Loop mee voor Koen! Per ronde krijgen we een donatie van sponsors.'
-        }
+        // {
+        //     titel: 'Wafelenbak bij de kerk',
+        //     datum: '2026-01-05',
+        //     locatie: 'Kerkplein',
+        //     organisator: 'Buren van de Kerkstraat',
+        //     email: 'contact@voorbeeld.be',
+        //     beschrijving: 'Verse wafels met koffie en thee. Alle opbrengst gaat naar Koen.'
+        // },
+        // {
+        //     titel: 'Benefiet Quiz Avond',
+        //     datum: '2026-02-19',
+        //     locatie: 'Café De Vriendschap',
+        //     organisator: 'Quizclub De Slimmeriken',
+        //     email: 'quiz@voorbeeld.be',
+        //     beschrijving: 'Gezellige quiz met hapjes en drankjes. Inschrijven per ploeg van 4 personen.'
+        // },
+        // {
+        //     titel: 'Sponsorloop',
+        //     datum: '2026-05-03',
+        //     locatie: 'Sportcomplex',
+        //     organisator: 'Atletiekclub Vooruit',
+        //     email: 'atletiek@voorbeeld.be',
+        //     beschrijving: 'Loop mee voor Koen! Per ronde krijgen we een donatie van sponsors.'
+        // }
     ];
     
     function loadActies() {

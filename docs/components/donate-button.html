@@ -14,50 +14,20 @@
         <h3>Kies een donatiemethode</h3>
         
         <div class="donate-options">
-            <a href="https://www.4fund.com/nl/actie/samen-voor-koen" target="_blank" rel="noopener" class="donate-option">
-                <div class="option-icon">🌐</div>
-                <div class="option-content">
-                    <h4>4Fund</h4>
-                    <p>Doneer online via 4Fund</p>
-                </div>
-                <div class="option-arrow">→</div>
-            </a>
-            
-            <button class="donate-option" onclick="showQRCode()">
-                <div class="option-icon">📱</div>
-                <div class="option-content">
-                    <h4>QR-code</h4>
-                    <p>Scan om te doneren</p>
-                </div>
-                <div class="option-arrow">→</div>
-            </button>
-        </div>
-        
-        <!-- QR Code Section (hidden by default) -->
-        <div id="qr-section" class="qr-section" style="display: none;">
-            <button class="back-btn" onclick="hideQRCode()">← Terug</button>
-            <h4>Scan de QR-code</h4>
-            <div class="qr-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-                    <rect width="200" height="200" fill="#fff"/>
-                    <rect x="20" y="20" width="60" height="60" fill="#000"/>
-                    <rect x="120" y="20" width="60" height="60" fill="#000"/>
-                    <rect x="20" y="120" width="60" height="60" fill="#000"/>
-                    <rect x="30" y="30" width="40" height="40" fill="#fff"/>
-                    <rect x="130" y="30" width="40" height="40" fill="#fff"/>
-                    <rect x="30" y="130" width="40" height="40" fill="#fff"/>
-                    <rect x="40" y="40" width="20" height="20" fill="#000"/>
-                    <rect x="140" y="40" width="20" height="20" fill="#000"/>
-                    <rect x="40" y="140" width="20" height="20" fill="#000"/>
-                    <rect x="90" y="30" width="10" height="10" fill="#000"/>
-                    <rect x="100" y="40" width="10" height="10" fill="#000"/>
-                    <rect x="90" y="50" width="10" height="10" fill="#000"/>
-                    <rect x="120" y="90" width="30" height="30" fill="#000"/>
-                    <rect x="90" y="120" width="20" height="20" fill="#000"/>
-                    <rect x="130" y="130" width="10" height="10" fill="#fff"/>
-                </svg>
+            <!-- link naar donatie size  -->
+            <div style="position: relative; width: 400px; height: 400px; overflow: hidden; margin: 0 auto;">
+                <iframe style="position: absolute; top:0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;" 
+                        src="https://4fund.com/nl/yhwuw7/widget/13"
+                        frameborder="0" scrolling="no">
+                </iframe>
             </div>
-            <p class="qr-info">BE12 3456 7890 1234<br><small>SAMEN voor Koen TEGEN kanker</small></p>
+            
+            <!-- QR Code voor directe donatie-->
+            <div style="text-align: center; margin-top: 2rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 1rem;">Of scan de QR-code</h4>
+                <img src="assets/payments/qr_code_chip_yhwuw7-donation.svg" alt="Donatie QR Code" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+                <p style="color: #666; margin-top: 0.5rem; font-size: 0.9rem;">Scan om te doneren<br><small>SAMEN voor Koen TEGEN kanker</small></p>
+            </div>
         </div>
     </div>
 </div>

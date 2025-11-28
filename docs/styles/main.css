@@ -904,7 +904,7 @@ form button:hover {
 
 /* Transparantie sectie highlight */
 #transparantie {
-    background: linear-gradient(135deg, #ffe8cc 0%, #ffd9a3 100%);
+    background: #ffffff;
     border-left: 5px solid #e67e22;
 }
 #transparantie #totaal-bedrag {
