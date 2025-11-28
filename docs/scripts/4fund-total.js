@@ -44,7 +44,7 @@
         } catch (error) {
             console.error('Error fetching 4Fund total:', error);
             // Fallback to link
-            totalElement.innerHTML = '<a href="https://4fund.com/nl/yhwuw7" target="_blank" rel="noopener noreferrer" style="color: #e67e22; text-decoration: underline; font-weight: 600;">Bekijk actuele stand →</a>';
+            totalElement.innerHTML = '<a href="https://4fund.com/nl/yhwuw7" target="_blank" rel="noopener noreferrer" style="color: #e67e22; text-decoration: underline; font-weight: 600;">-</a>';
         }
     }
     

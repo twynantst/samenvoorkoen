@@ -127,7 +127,7 @@ Deze array wordt gebruikt voor:
 - Geen tracking cookies (Cloudflare Web Analytics is cookie-less)
 - Privacy policy beschikbaar op `/privacy.html`
 - Contact info: info@samenvoorkoen.be
-- Feitelijke vereniging: Houthoek 33, Laakdal
+- Feitelijke vereniging: Houthoek 33, 2430 Laakdal
 
 ## Foto's Toevoegen
 

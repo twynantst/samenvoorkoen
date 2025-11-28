@@ -1,7 +1,8 @@
+
 (function() {
     const container = document.getElementById('acties-container');
     
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRpS6o94LVFOmq7ttlODzHUUei2z1oz99qKEiD98N6ujndtMKfotH2vUyx5_00fMoyipBBjxdiwt6rN/pub?output=csv';
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF_2Nly5sJj9rKJLGBL3eLNW6tGV7t5xFPqQLXfNzwgRhMjBr38G9OMxst4wnIcnvJGsBayGBwYvz1/pub?output=csv';
 
     // Voorbeeld testdata (wordt gebruikt tot Google Sheet geconfigureerd is)
     const DEMO_ACTIES = [
@@ -65,8 +66,10 @@
                 return response.text();
             })
             .then(csv => {
+                console.log('Acties geladen, CSV:', csv);
                 const externeActies = parseCSV(csv);
                 const alleActies = [...eigenActiesVoorLijst, ...(externeActies.length > 0 ? externeActies : DEMO_ACTIES)];
+                console.log('Externe acties:', externeActies);
                 renderActies(alleActies);
                 window.alleExterneActies = externeActies.length > 0 ? externeActies : DEMO_ACTIES;
                 if (typeof renderCalendar === 'function') renderCalendar();
@@ -92,11 +95,11 @@
             
             acties.push({
                 timestamp: values[0],
-                titel: values[1],
-                datum: values[2],
-                locatie: values[3],
-                organisator: values[4],
-                email: values[5],
+                email: values[1],
+                titel: values[2],
+                datum: values[3],
+                locatie: values[4],
+                organisator: values[5],
                 beschrijving: values[6]
             });
         }
@@ -126,24 +129,34 @@
     }
     
     function renderActies(acties) {
+        console.log('Externe acties:', acties);
+
         // Filter verleden acties (alleen toekomstige/vandaag tonen)
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        
-        const toekomstActies = acties.filter(a => {
-            try {
-                const actieDatum = new Date(a.datum);
+
+        const toekomstActies = acties
+            .map(a => {
+
+                const [day, month, year] = a.datum.split("-").map(Number);
+                actieDatum = new Date(year, month - 1, day); // month is 0-based
                 actieDatum.setHours(0, 0, 0, 0);
-                return actieDatum >= today;
-            } catch {
-                return true; // Bij foutieve datum toch tonen
-            }
-        });
+                a.actieDatum = actieDatum;
+                return a;
+            })
+            .filter(a => {
+                try {
+                    return a.actieDatum >= today;
+                } catch {
+                    console.log('Fout bij filteren actie datum:', a);
+                    return true; // Bij foutieve datum toch tonen
+                }
+            });
         
         // Sorteer op datum (eerstkomende eerst)
         toekomstActies.sort((a, b) => {
             try {
-                return new Date(a.datum) - new Date(b.datum);
+                return a.actieDatum - b.actieDatum;
             } catch {
                 return 0;
             }
@@ -157,8 +170,8 @@
         container.innerHTML = toekomstActies.map(a => `
             <div class="actie-item ${a.type === 'eigen' ? 'eigen-actie-item' : ''}">
                 ${a.type === 'eigen' ? '<span class="actie-badge">⭐ Onze Actie</span>' : ''}
-                <h3>${escapeHtml(a.titel)} <small>(${a.datumFormatted || formatDate(a.datum)})</small></h3>
-                <p><strong>📍 Locatie:</strong> ${escapeHtml(a.locatie)}</p>
+                <h3>${escapeHtml(a.titel)} <small>(${a.datumFormatted || formatDate(a.actieDatum)})</small></h3>
+                <p><strong>📍 Locatie:</strong> ${a.type === 'eigen' ? a.locatie : escapeHtml(a.locatie)}</p>
                 <p><strong>👥 Organisator:</strong> ${escapeHtml(a.organisator)}</p>
                 <p><strong>📝 Details:</strong> ${escapeHtml(a.beschrijving)}</p>
                 <p class="contact">✉️ Contact: <a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></p>
@@ -176,11 +189,19 @@
         }[c]));
     }
     
-    function formatDate(d) {
+    function formatDate(date) {
         try {
-            return new Date(d).toLocaleDateString('nl-BE');
+           
+            const formatter = new Intl.DateTimeFormat('nl-NL', {
+            weekday: 'short',   // "Vr"
+            day: 'numeric',     // "6"
+            month: 'long',      // "februari"
+            year: 'numeric'     // "2026"
+            });
+
+            return formatter.format(date);
         } catch {
-            return d;
+            return date;
         }
     }
     

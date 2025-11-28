@@ -97,7 +97,7 @@
 
     <section id="registreer">
         <h2>Registreer Jouw Actie</h2>
-        <p>Organiseer je een wafelenbak, quiz, wandeling of iets anders? Klik hieronder om het formulier te openen.</p>
+        <p>Organiseer je een actie (quiz, verkoop, wandeling, evenement)? Registreer ze hier.</p>
         
         <div class="form-toggle-card" onclick="toggleForm()">
             <div class="form-toggle-header">
@@ -108,7 +108,7 @@
         </div>
         
         <div class="form-embed" id="form-container" style="display:none;">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVOt9dH2I4CIlIb3oQPn3Gvpmtv_X5kJzBUL6b5khhyFHUTA/viewform?embedded=true" width="100%" height="1106" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqaZYmxK7L0vkDwK5A-s2ciB2h5qqGn_namOHlHr_eeMbm0Q/viewform?embedded=true" width="100%" height="1106" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
         </div>
     </section>
 
@@ -121,9 +121,10 @@
 
     <section id="transparantie">
         <h2>Transparantie</h2>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
-            Alle bedragen worden rechtstreeks gebruikt voor Koens PIPAC-behandeling en medische kosten.<br>
-            Elke bijdrage helpt Koen in zijn strijd tegen kanker. Doneer vandaag nog.
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; text-align: center;">
+            Elke donatie gaat naar PIPAC-behandelingen en medische kosten.<br>
+            Bekijk de actuele stand hieronder. <br>
+            Dank voor uw steun.
         </p>
         <div style="position: relative; width: 100%; height: 500px; overflow: hidden; margin: 0 auto; max-width: 600px;">
             <iframe style="position: absolute; top:0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;" src="https://4fund.com/nl/yhwuw7/widget/23" frameborder="0" scrolling="no"></iframe>
@@ -138,7 +139,7 @@
             <p>
                 <strong>SAMEN voor Koen TEGEN kanker</strong><br>
                 Feitelijke Vereniging<br>
-                Houthoek 33, Laakdal<br>
+                Houthoek 33, 2430 Laakdal<br>
                 <a href="mailto:info@samenvoorkoen.be">info@samenvoorkoen.be</a>
             </p>
         </div>
@@ -184,54 +185,54 @@
     // Centrale definitie van eigen acties (globaal beschikbaar voor actions-remote.js)
     window.EIGEN_ACTIES = [
         {
-            datum: '2026-02-06',
+            datum: '06-02-2026',
             datumFormatted: 'Vr 6 februari 2026',
             emoji: '🍷 & 🧀',
-            titel: 'Gezellige Bodega Avond',
+            titel: 'Bodega: Wijn & Tapas (gratis inkom)',
             locatie: '<a href="https://maps.app.goo.gl/hrpAPrGFgsJwBo3F6" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Dennenoord Laakdal</a>',
             details: [
-                { label: 'Tijd', value: '19:00 - 24:00' },
-                { label: 'Toegang', value: 'Gratis' },
-                { label: 'Programma', value: 'Gezellige bodega met wijn en lekkere tapas plankjes' },
+                { label: 'Tijd', value: '19:00-24:00' },
+                { label: 'Inkom', value: 'Gratis' },
+                { label: 'Concept', value: 'Wijn & tapas – beperkte plaatse' },
                 { label: 'Reserveren verplicht', 
-                  value: '<a href="mailto:bodega@samenvoorkoen.be">Beperkt aantal plaatsen. Meer info volgt binnenkort!</a>' }
+                  value: '<a href="mailto:bodega@samenvoorkoen.be">Meer info volgt binnenkort!</a>' }
             ]
         },
         {
-            datum: '2026-02-07',
+            datum: '07-02-2026',
             datumFormatted: 'Za 7 februari 2026',
             emoji: '🎉',
-            titel: 'Benefietfuif',
+            titel: 'Benefietfuif met bands & DJ’s (€10)',
             locatie: '<a href="https://maps.app.goo.gl/hrpAPrGFgsJwBo3F6" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Dennenoord Laakdal</a>',
             details: [
-                { label: 'Tijd', value: '20:00 - 03:00' },
-                { label: 'Toegang', value: '€10' },
-                { label: 'Programma', value: 'Fuif met Leuke Bands en DJ\'s' },
+                { label: 'Tijd', value: '20:00-03:00' },
+                { label: 'Inkom', value: '€10' },
+                { label: 'Line-up', value: 'Bands & DJ’s (volgt)' },
                 { label: 'Info & tickets', value: 'Meer info volgt binnenkort' }
             ]
         },
         {
-            datum: '2026-02-08',
+            datum: '08-02-2026',
             datumFormatted: 'Zo 8 februari 2026',
             emoji: '🚶',
-            titel: 'Wandeldag',
+            titel: 'Wandeldag: 4 routes (soep inbegrepen)',
             locatie: '<a href="https://maps.app.goo.gl/hrpAPrGFgsJwBo3F6" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Dennenoord Laakdal</a>',
             details: [
-                { label: 'Tijd', value: 'Meer info volgt binnenkort' },
-                { label: 'Routes', value: '4 wandelroutes (ook voor gezinnen met kinderen)' },
-                { label: 'Prijs', value: '€5 (incl. soep), kinderen tot 10 jaar gratis' }
+                { label: 'Tijd', value: 'Voormiddag (exacte starturen volgen)' },
+                { label: 'Routes', value: '4 afstanden (ook kindvriendelijk)' },
+                { label: 'Prijs', value: '€5 incl. soep – kinderen t/m 10 jaar gratis' }
             ]
         },
         {
-            datum: '2026-02-08',
+            datum: '08-02-2026',
             datumFormatted: 'Zo 8 februari 2026',
             emoji: '🍽️',
-            titel: 'Eetfestijn',
+            titel: 'Eetfestijn & Afhaal (middag + avond)',
             locatie: '<a href="https://maps.app.goo.gl/hrpAPrGFgsJwBo3F6" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Dennenoord Laakdal</a>',
             details: [
-                { label: 'Tijd', value: 'van 11:00 tot 14:00 en van 17:00 tot 20:00' },
-                { label: 'Menu', value: 'Spaghetti, vegetarische spaghetti, stoofvlees, videe en curryworst met frietjes voor de kinderen' },
-                { label: 'Afhaal Spaghetti', value: 'Mogelijk van 9:00 tot 11:00 en van 14:00 tot 17:00' },
+                { label: 'Tijd', value: '11:00–14:00 & 17:00–20:00' },
+                { label: 'Menu', value: 'Spaghetti (klassiek & vegetarisch), stoofvlees, videe, curryworst met frietjes (kids)' },
+                { label: 'Afhaal Spaghetti', value: '09:00–11:00 & 14:00–17:00' },
                 { label: 'Inschrijven verplicht', value: '<a href="mailto:eetfestijn@samenvoorkoen.be">Meer info volgt binnenkort!</a>' }
             ]
         }
@@ -257,7 +258,7 @@
                 <div class="actie-details" style="display:none;">
                     ${actie.details.map(d => `<p><strong>${d.label}:</strong> ${d.value}</p>`).join('')}
                 </div>
-                <span class="meer-info">▼ Klik voor meer info</span>
+                <span class="meer-info">▼ Toon details</span>
             </div>
         `).join('');
     }
@@ -270,7 +271,7 @@
         
         if (isOpen) {
             details.style.display = 'none';
-            meerInfo.textContent = '▼ Klik voor meer info';
+            meerInfo.textContent = '▼ Toon details';
             card.classList.remove('expanded');
         } else {
             details.style.display = 'block';
@@ -287,7 +288,7 @@
         
         if (isOpen) {
             formContainer.style.display = 'none';
-            formStatus.textContent = '▼ Klik om formulier te openen';
+            formStatus.textContent = '▼ Toon formulier';
         } else {
             formContainer.style.display = 'block';
             formStatus.textContent = '▲ Verberg formulier';
@@ -297,8 +298,9 @@
     }
     
     // Kalender functionaliteit
-    let currentMonth = 0; // 0 = januari 2026
-    let currentYear = 2026;
+    let now = new Date();
+    let currentMonth = now.getMonth(); // 0 = januari 2026
+    let currentYear = now.getFullYear();
     
     function renderCalendar() {
         const grid = document.getElementById('calendar-grid');
@@ -315,7 +317,7 @@
         
         // Verzamel externe acties van actions-remote
         const externeActies = window.alleExterneActies || [];
-        
+
         // Header dagen
         let html = '<div class="calendar-day-header">Ma</div><div class="calendar-day-header">Di</div>' +
                    '<div class="calendar-day-header">Wo</div><div class="calendar-day-header">Do</div>' +
@@ -329,7 +331,8 @@
         
         // Dagen van de maand
         for (let day = 1; day <= daysInMonth; day++) {
-            const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            // DD-MM-YYYY formaat
+            const dateStr = `${String(day).padStart(2, '0')}-${String(currentMonth + 1).padStart(2, '0')}-${currentYear}`;
             const eigenActie = window.EIGEN_ACTIES.some(a => a.datum === dateStr);
             const externeActie = externeActies.some(a => a.datum === dateStr);
             
