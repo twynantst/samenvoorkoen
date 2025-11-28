@@ -2,7 +2,7 @@
 
 Fundraising website voor Koens PIPAC-behandeling. Statische site met donatie integratie (4Fund), event registratie (Google Forms), foto galerij, en analytics.
 
-🌐 **Live:** https://twynantst.github.io/helpkvh/  
+🌐 **Live:** https://samenvoorkoen.be/  
 📊 **Analytics:** Cloudflare Web Analytics  
 💰 **Donaties:** 4Fund.com  
 📧 **Email:** ImprovMX (email forwarding)  
