@@ -123,6 +123,35 @@ Deze array wordt gebruikt voor:
 - Dashboard: https://dash.cloudflare.com → Analytics & Logs → Web Analytics
 - Geen consent banner nodig
 
+## SEO & Google Search Console
+
+**SEO Features:**
+- ✅ Meta tags (description, keywords, robots)
+- ✅ Open Graph tags (Facebook/WhatsApp preview)
+- ✅ Twitter Cards
+- ✅ Structured Data (JSON-LD) - Organization & Event schema
+- ✅ Canonical URLs
+- ✅ robots.txt
+- ✅ sitemap.xml
+
+**Google Search Console Setup:**
+1. Ga naar https://search.google.com/search-console
+2. Klik op **"Property toevoegen"**
+3. Kies **"Domain"** en vul in: `samenvoorkoen.be`
+4. Kopieer het TXT record dat Google geeft
+5. Log in bij **Xenius** (domain registrar)
+6. Ga naar DNS instellingen voor samenvoorkoen.be
+7. Voeg TXT record toe
+8. Wacht 5-30 minuten voor DNS propagatie
+9. Klik **"Verify"** in Google Search Console
+10. In het linkermenu, klik op **"Sitemaps"**
+11. Vul in: `sitemap.xml` en klik **"Indienen"**
+
+**SEO Monitoring:**
+- Google indexeert binnen 24-48 uur
+- Check "Coverage" rapport voor geïndexeerde pagina's
+- Monitor "Performance" voor zoekwoorden en clicks
+
 ## Privacy / GDPR
 - Geen tracking cookies (Cloudflare Web Analytics is cookie-less)
 - Privacy policy beschikbaar op `/privacy.html`
