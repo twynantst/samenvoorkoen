@@ -95,12 +95,13 @@
             
             acties.push({
                 timestamp: values[0],
-                email: values[1],
+                email: values[7], // Contact e-mail is de 8ste kolom
                 titel: values[2],
                 datum: values[3],
                 locatie: values[4],
                 organisator: values[5],
-                beschrijving: values[6]
+                beschrijving: values[6],
+                image: values[8] || '' // Image naam is de 9de kolom (optioneel)
             });
         }
         
@@ -171,6 +172,9 @@
             <div class="actie-item ${a.type === 'eigen' ? 'eigen-actie-item' : ''}">
                 ${a.type === 'eigen' ? '<span class="actie-badge">⭐ Onze Actie</span>' : ''}
                 <h3>${escapeHtml(a.titel)} <small>(${a.datumFormatted || formatDate(a.actieDatum)})</small></h3>
+                ${a.image && a.image.trim() ? `
+                    <p><strong>📄 Uitnodiging: </strong> <a href="assets/events/${escapeHtml(a.image)}" target="_blank" onclick="event.preventDefault(); openLightbox('assets/events/${escapeHtml(a.image)}')" style="color: #e67e22; text-decoration: underline; cursor: pointer;">Bekijk uitnodiging</a></p>
+                ` : ''}
                 <p><strong>📍 Locatie:</strong> ${a.type === 'eigen' ? a.locatie : escapeHtml(a.locatie)}</p>
                 <p><strong>👥 Organisator:</strong> ${escapeHtml(a.organisator)}</p>
                 <p><strong>📝 Details:</strong> ${escapeHtml(a.beschrijving)}</p>
