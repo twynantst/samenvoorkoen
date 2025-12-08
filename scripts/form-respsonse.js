@@ -5,8 +5,8 @@ function parseAantalFlessen(selection) {
   const regex = /(\d+)\s*(fles|flessen|dozen|doosje|doosjes)/;
   const match = selection.match(regex);
   if (match) {
-    if(match[2].toLowerCase().includes("fles")){
-      return parseInt(match[1]);  
+    if (match[2].toLowerCase().includes("fles")) {
+      return parseInt(match[1]);
     } else {
       return parseInt(match[1]) * 6;
     }
@@ -19,16 +19,16 @@ function bottleCount(response) {
   var antwoord = response.getResponse();
   var count = 0
   if (question.includes("Aantal flessen") && Array.isArray(antwoord)) {
-      for (var i = 0; i < antwoord.length; i++) {
-         count = count + parseAantalFlessen(antwoord[i])
-      }
+    for (var i = 0; i < antwoord.length; i++) {
+      count = count + parseAantalFlessen(antwoord[i])
+    }
   }
-  return count; 
+  return count;
 }
 
 function bottlePrice(response) {
   var question = response.getItem().getTitle();
-    
+
   if (question.includes("Or du Sud")) {
     return 10;
   }
@@ -36,25 +36,25 @@ function bottlePrice(response) {
     return 10;
   }
   else if (question.includes("Vega Vella")) {
-    return 15;  
+    return 15;
   }
   else if (question.includes("La Guarida")) {
-    return 15;  
+    return 15;
   }
   else if (question.includes("Pere Ventura")) {
-    return 15;  
+    return 15;
   }
-  return 0; 
+  return 0;
 }
 
 function fallback(responses) {
   var block = "";
-  
+
   for (var i = 0; i < responses.length; i++) {
     var response = responses[i];
     var question = response.getItem().getTitle();
     if (question.includes("Aantal flessen")) {
-        block = block + "<p>" + question + ": " + response.getResponse().join(", ") + "</p>";
+      block = block + "<p>" + question + ": " + response.getResponse().join(", ") + "</p>";
     }
   }
   return block;
@@ -76,10 +76,11 @@ function totalOrder(responses) {
 
   try {
     for (var i = 0; i < responses.length; i++) {
-        var respons = responses[i];
-        var question = respons.getItem().getTitle();
-        var price = bottlePrice(respons);
-        var count = bottleCount(respons);
+      var response = responses[i];
+      var question = response.getItem().getTitle();
+      if (question.includes("Aantal flessen")) {
+        var price = bottlePrice(response);
+        var count = bottleCount(response);
         if (count > 0 && price > 0) {
           table += `<tr>
                       <td style="border: 1px solid #ccc; padding: 8px;">${question}</td>
@@ -87,17 +88,32 @@ function totalOrder(responses) {
                       <td style="border: 1px solid #ccc; padding: 8px;">€${price.toFixed(2)}</td>
                       <td style="border: 1px solid #ccc; padding: 8px;">€${(count * price).toFixed(2)}</td>
                     </tr>`;
-            total = total + (count * price);
+          total = total + (count * price);
+        }
+      } else if (question.includes("Geschenkdozen")) {
+        Logger.log("Geschenkdozen: " + response.getResponse());
+        var count = parseInt(response.getResponse());
+        var price = 3;
+        if (count > 0 && price > 0) {
+          table += `<tr>
+                      <td style="border: 1px solid #ccc; padding: 8px;">Aantal geschenkdozen</td>
+                      <td style="border: 1px solid #ccc; padding: 8px;">${count}</td>
+                      <td style="border: 1px solid #ccc; padding: 8px;">€${price.toFixed(2)}</td>
+                      <td style="border: 1px solid #ccc; padding: 8px;">€${(count * price).toFixed(2)}</td>
+                    </tr>`;
+          total = total + (count * price);
         }
       }
-      table += `
+
+    }
+    table += `
             <tr>
               <td colspan="3" style="border: 1px solid #ccc; padding: 8px; text-align: right;"><strong>Totaal:</strong></td>
               <td style="border: 1px solid #ccc; padding: 8px;"><strong>€${total.toFixed(2)}</strong></td>
             </tr>
           </tbody>
         </table>`
-      return table;
+    return table;
   }
   catch (err) {
     Logger.log("Error in totalOrder: " + err.message);
@@ -111,7 +127,7 @@ function naam(responses) {
     var response = responses[i];
     var question = response.getItem().getTitle();
     if (question.includes("achternaam")) {
-        return response.getResponse();
+      return response.getResponse();
     }
   }
   return "onbekend";
@@ -122,7 +138,7 @@ function opmerkingen(responses) {
     var response = responses[i];
     var question = response.getItem().getTitle();
     if (question.includes("opmerkingen")) {
-        return "<p style=\"margin-bottom: 40px;text-decoration: underline;\">Uw opmerkingen:</p><p>" + response.getResponse() + "</p>";
+      return "<p style=\"margin-bottom: 40px;text-decoration: underline;\">Uw opmerkingen:</p><p>" + response.getResponse() + "</p>";
     }
   }
   return "";
@@ -134,8 +150,8 @@ function onFormSubmit(e) {
     var email = e.response.getRespondentEmail();
 
     if (!email) {
-        Logger.log("ERROR: No email address found");
-        return;
+      Logger.log("ERROR: No email address found");
+      return;
     }
 
     var htmlBody = `
@@ -152,6 +168,14 @@ function onFormSubmit(e) {
           <br>
           ${opmerkingen(responses)}
           <p style="margin-bottom: 20px; margin-top: 20px;">We nemen zo snel mogelijk contact met je op voor de verdere afhandeling.</p>
+          <p style="margin-bottom: 20px;">
+          Voorlopige afhaaldagen zijn gepland op:<br>
+            <ul> 
+              <li><strong>Zaterdag 20 december 2025 tussen 12 en 17:00 op Zijstraat 33, 2450 Meerhout</strong></li>
+              <li><strong>Zaterdag 17 Januari 2026 tussen 12 en 17:00 op Houthoek 33, 2430 Vorst Laakdal</strong></li>
+              <li><strong>Vrijdag 6 Februari 2026 's avonds op de Bodega ten voordelen van Koen op Denneoord, 2430 Eindhout Laakdal</strong></li>            
+            </ul>
+          </p>
           <p>Indien er vragen zijn, kan u steeds mailen naar <a href="mailto:wijn@samenvoorkoen.be">wijn@samenvoorkoen.be</a></p>
           <p style="margin-top: 40px;">
             Met vriendelijke groet,<br>
@@ -162,18 +186,34 @@ function onFormSubmit(e) {
       </html>`;
 
 
+    // Haal PDF van een publieke URL
+    var pdfUrl = "https://samenvoorkoen.be/assets/wijn/bedankbrief.pdf";
+    
+    try {
+      var response = UrlFetchApp.fetch(pdfUrl);
+      pdfBlob = response.getBlob().setName("Wijnlijst.pdf");
+    } catch (err) {
+      Logger.log("ERROR fetching PDF: " + err.message);
+    }
+
     // E-mail verzenden
     if (email) {
-        MailApp.sendEmail({
-            to: email,
-            name: "SAMEN voor Koen TEGEN kanker",
-            subject: "Bevestiging van je bestelling - SAMEN voor Koen TEGEN kanker",
-            htmlBody: htmlBody,
-            body: "Bedankt voor uw bestelling! Gelieve het totaalbedrag over te maken op BE20 7380 5241 2556."
-            
-        });
+      var emailOptions = {
+        to: email,
+        name: "SAMEN voor Koen TEGEN kanker",
+        subject: "Bevestiging van je bestelling - SAMEN voor Koen TEGEN kanker",
+        htmlBody: htmlBody,
+        body: "Bedankt voor uw bestelling! Gelieve het totaalbedrag over te maken op BE20 7380 5241 2556."
+      };
+      
+      // Voeg attachment toe als het gelukt is
+      if (pdfBlob) {
+        emailOptions.attachments = [pdfBlob];
+      }
+      
+      MailApp.sendEmail(emailOptions);
     }
-    
+
     MailApp.sendEmail({
       to: "wijn.bestelling@samenvoorkoen.be",
       subject: `Bestelling wijn van ${naam(responses)} - ${email}`,
