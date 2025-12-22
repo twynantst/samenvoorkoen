@@ -147,6 +147,7 @@ function onFormSubmit(e) {
           <p style="text-decoration: underline;">Uw bestelling:</p>
           ${totalOrder(order(responses))}
           <p>Gelieve het totaalbedrag over te maken op rekening:<br>
+          <strong>SAMEN voor Koen TEGEN kanker</strong><br>
           <strong>BE20 7380 5241 2556</strong><br>
           Met vermelding: <strong>Eten + ${cname}</strong></p>
           <img src="https://samenvoorkoen.be/assets/payments/payconiq.png" alt="QR Code voor betaling" style="width:150px;height:150px;">

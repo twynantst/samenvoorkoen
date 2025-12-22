@@ -40,9 +40,8 @@
             // Maak een mooie beschrijving van de details
             const detailsText = '| ' + actie.details
                 .map(d => {
-                    // Strip HTML tags voor tekstweergave
-                    const cleanValue = d.value.replace(/<[^>]*>/g, '');
-                    return `${d.label}: ${cleanValue}`;
+                    // Behoud HTML in de value (voor links etc.)
+                    return `${d.label}: ${d.value}`;
                 })
                 .join(' | ');
             
@@ -52,7 +51,7 @@
                 datumFormatted: actie.datumFormatted,
                 locatie: actie.locatie,
                 organisator: 'Team SAMEN voor Koen TEGEN kanker',
-                email: 'info@samenvoorkoen.be',
+                email: actie.email,
                 beschrijving: detailsText,
                 type: 'eigen'
             };
@@ -177,8 +176,8 @@
                 ` : ''}
                 <p><strong>📍 Locatie:</strong> ${a.type === 'eigen' ? a.locatie : escapeHtml(a.locatie)}</p>
                 <p><strong>👥 Organisator:</strong> ${escapeHtml(a.organisator)}</p>
-                <p><strong>📝 Details:</strong> ${formatLinks(addLines(escapeHtml(a.beschrijving)))}</p>
-                <p class="contact">✉️ Contact: <a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></p>
+                <p><strong>📝 Details:</strong> ${a.type === 'eigen' ? addLines(a.beschrijving) : formatLinks(addLines(escapeHtml(a.beschrijving)))}</p>
+                ${a.email ? `<p class="contact">✉️ Contact: <a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></p>` : ''}
             </div>
         `).join('');
     }
