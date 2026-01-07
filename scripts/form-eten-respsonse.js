@@ -28,7 +28,9 @@ function order(responses) {
     var question = response.getItem().getTitle();
     var answer = response.getResponse();  
     if (question.includes("tijdslot")) {
-      tijdslot = answer;
+      if (!answer.includes("Enkel afhaal")) {
+        tijdslot = answer;
+      }
     } else if (question.includes("Vegetarische")) {
       vspaghetti = parseInt(answer) || 0;
     } else if (question.includes("Spaghetti")) {
@@ -126,6 +128,18 @@ function opmerkingen(responses) {
   return "";
 }
 
+function tijdslot(bestelling) {
+  if (!bestelling.tijdslot || bestelling.tijdslot.trim() === "") {
+    return "";
+  }
+
+  return `<div style="background: white; padding: 20px; border-radius: 5px; border-left: 4px solid #e67e22; margin: 25px 0;">
+    <h3 style="margin-top: 0; color: #2c3e50;">⏰ Gekozen tijdslot</h3>
+    <p style="margin: 0; font-size: 18px; font-weight: bold; color: #2c3e50;">${bestelling.tijdslot}</p>
+  </div>`;
+
+}
+
 function onFormSubmit(e) {
   try {
     var responses = e.response.getItemResponses();
@@ -137,6 +151,7 @@ function onFormSubmit(e) {
     }
 
     var cname = naam(responses);
+    var bestelling = order(responses);
 
     var htmlBody = `
       <!DOCTYPE html>
@@ -151,10 +166,12 @@ function onFormSubmit(e) {
             <h2 style="color: #2c3e50; margin-top: 0;">Beste ${cname},</h2>
             
             <p>Bedankt voor uw bestelling voor onze eetdag! Hieronder vindt u het overzicht van uw bestelling.</p>
+             
+            ${tijdslot(bestelling)}
             
             <div style="background: white; padding: 20px; border-left: 4px solid #e67e22; margin: 25px 0; border-radius: 5px;">
               <h3 style="margin-top: 0; color: #2c3e50;">Uw bestelling:</h3>
-              ${totalOrder(order(responses))}
+              ${totalOrder(bestelling)}
             </div>
             
             <div style="background: #fff3e0; padding: 20px; border-radius: 5px; border-left: 4px solid #e67e22; margin: 25px 0;">
@@ -215,6 +232,8 @@ function onFormSubmit(e) {
         body: `Beste ${cname},
 
 Bedankt voor uw bestelling voor onze eetdag!
+
+Tijdstip: ${bestelling.tijdslot}
 
 Gelieve het totaalbedrag over te maken op rekening:
 SAMEN voor Koen TEGEN kanker
